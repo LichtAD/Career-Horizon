@@ -1,9 +1,11 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import googlePic from '../../assets/google.svg';
 import { AuthContext } from '../provider/AuthProvider';
 
 const Register = () => {
+
+    const navigate = useNavigate();
 
     const { setUser, regNewUser } = useContext(AuthContext);
 
@@ -18,6 +20,18 @@ const Register = () => {
         const password = form.password.value;
         // console.log({name, photo, email, password});
 
+        const regex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+
+        // const password = "Passw1";
+        const isValid = regex.test(password);
+        console.log(isValid); // true if valid, false otherwise
+
+        if (!isValid) {
+            setError('Password must contain at least one uppercase letter, one lowercase letter, and be at least 6 characters long.');
+            return;
+        }
+
+
         setError('');
 
         regNewUser(email, password)
@@ -26,6 +40,7 @@ const Register = () => {
                 setUser(user);
                 // console.log(user);
                 form.reset();
+                navigate('/');
             })
             .catch(error => {
                 // console.log(error.message);

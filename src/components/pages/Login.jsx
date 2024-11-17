@@ -1,11 +1,16 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import googlePic from '../../assets/google.svg';
 import { AuthContext } from '../provider/AuthProvider';
 
 const Login = () => {
 
-    const { logInUser } = useContext(AuthContext);
+    const location = useLocation();
+    // console.log(location);
+
+    const navigate = useNavigate();
+
+    const { logInUser, setUser } = useContext(AuthContext);
 
     const [error, setError] = useState('');
 
@@ -21,8 +26,10 @@ const Login = () => {
         logInUser(email, password)
             .then(result => {
                 const user = result.user;
+                // setUser(user);
                 // console.log(user);
                 form.reset();
+                navigate(location?.state ? location?.state : '/');
             })
             .catch(error => {
                 // console.log(error.message);
