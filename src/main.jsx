@@ -5,11 +5,26 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import Root from './components/layouts/Root';
+import Home from './components/layouts/Home';
+import Profile from './components/pages/Profile';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello world!</div>,
+    element: <Root></Root>,
+    errorElement: <div>There was an error</div>,
+    children: [
+      {
+        path: "/",
+        element: <Home></Home>,
+        loader: () => fetch('career.json'),
+      },
+      {
+        path: "/profile", 
+        element: <Profile></Profile>,
+      },
+    ],
   },
 ]);
 
