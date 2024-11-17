@@ -47,7 +47,29 @@ const Navbar = () => {
                 <div className="navbar-end">
                     {
                         user && user.email ?
-                            <div>{user.email} <button onClick={logOut} className="btn btn-neutral">Logout</button></div> 
+                            <div className='flex items-center gap-2'>
+                                {/* <p>{user?.displayName} {user?.email}</p> */}
+
+                                <div className="dropdown dropdown-end">
+                                    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                        <div className="w-10 rounded-full">
+                                            <img
+                                                alt={user?.displayName}
+                                                title={user?.displayName}
+                                                src={user?.photoURL} />
+                                        </div>
+                                    </div>
+                                    <ul
+                                        tabIndex={0}
+                                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                                        <li>{user?.displayName}</li>
+                                    </ul>
+                                </div>
+
+                                {/* <img className='w-10 rounded-full' src={user?.photoURL} alt={user?.displayName} title={user?.displayName} /> */}
+
+                                <button onClick={logOut} className="btn btn-neutral">Logout</button>
+                            </div>
                             : <NavLink to={'/login'} className="btn btn-neutral">Login</NavLink>
                     }
                 </div>

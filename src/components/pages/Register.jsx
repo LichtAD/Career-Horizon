@@ -7,7 +7,7 @@ const Register = () => {
 
     const navigate = useNavigate();
 
-    const { setUser, regNewUser } = useContext(AuthContext);
+    const { setUser, regNewUser, updateUserProfile } = useContext(AuthContext);
 
     const [error, setError] = useState('');
 
@@ -39,8 +39,15 @@ const Register = () => {
                 const user = result.user;
                 setUser(user);
                 // console.log(user);
+                updateUserProfile({ displayName: name, photoURL: photo })
+                    .then(() => {
+                        navigate('/');
+                    })
+                    .catch(error => {
+                        // console.log(error.message);
+                        setError(error.message);
+                    })
                 form.reset();
-                navigate('/');
             })
             .catch(error => {
                 // console.log(error.message);

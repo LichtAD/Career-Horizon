@@ -10,7 +10,7 @@ const Login = () => {
 
     const navigate = useNavigate();
 
-    const { logInUser, setUser } = useContext(AuthContext);
+    const { logInUser, setUser, signInWithGoogle } = useContext(AuthContext);
 
     const [error, setError] = useState('');
 
@@ -36,6 +36,18 @@ const Login = () => {
                 setError(error.message);
             })
     }
+
+    const handleGoogleLogin = () => {
+        signInWithGoogle()
+            .then(result => {
+                const user = result.user;
+                // console.log(user);
+                navigate(location?.state ? location?.state : '/');
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    };
 
     return (
         <div className='flex justify-center items-center h-screen'>
@@ -71,7 +83,7 @@ const Login = () => {
                     </div>
 
                     <div className='text-center'>
-                        <button className="btn btn-primary btn-outline rounded-full">
+                        <button onClick={handleGoogleLogin} className="btn btn-primary btn-outline rounded-full">
                             <img className='w-6 h-6' src={googlePic} alt="" /> Login with Google
                         </button>
                     </div>
