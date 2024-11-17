@@ -1,6 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const SingleServiceCard = ({ service }) => {
+
+    const navigate = useNavigate();
 
     const {id, image, serviceName, category, description, pricing, duration, counselor, rating } = service
 
@@ -18,7 +21,7 @@ const SingleServiceCard = ({ service }) => {
                     <p>Pricing: {pricing}</p>
                     <p>Counselor Name: {counselor}</p>
                     <div className="card-actions">
-                        <button className="btn btn-neutral">Learn More</button>
+                        <button onClick={() => navigate(`/services/${id}`)} className="btn btn-neutral">Learn More</button>
                     </div>
                 </div>
             </div>
