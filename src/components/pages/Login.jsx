@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import googlePic from '../../assets/google.svg';
 import { AuthContext } from '../provider/AuthProvider';
@@ -67,13 +67,20 @@ const Login = () => {
         return setShowPassword(prev => !prev);
     }
 
-    const emailRef = React.createRef();
-    const handlePasswordReset = () => {
+    const emailRef = useRef();
+
+    const handlePasswordReset = (event) => {
+        event.stopPropagation();
+        event.preventDefault();
+
         const email_ref = emailRef.current?.value;
-        console.log('forgot password, email is', email_ref);
+        // console.log('forgot password, email is', email_ref);
 
         if (!email_ref) {
-            alert('Please enter your email');
+            toast.warning('Please enter your email!', {
+                position: "top-center",
+                autoClose: 2000
+            })
             return;
         }
         else {
