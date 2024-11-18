@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Root = () => {
     return (
-        <div>
+        <div className='font-poppins'>
             <nav className='max-w-7xl mx-auto'>
                 <Navbar></Navbar>
             </nav>

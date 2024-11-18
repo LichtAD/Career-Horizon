@@ -15,32 +15,43 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     console.log(user);
 
+    // ! register with email and password
     const regNewUser = (email, password) => {
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
+    // ! log in with email and password
     const logInUser = (email, password) => {
         setLoading(true);
         return signInWithEmailAndPassword(auth, email, password)
     }
 
+    // ! sign in with google
     const signInWithGoogle = () => {
         setLoading(true);
         return signInWithPopup(auth, providerGoogle)
     }
 
+    // ! log out
     const logOut = () => {
         setLoading(true);
         return signOut(auth);
     }
 
+    // ! update profile when register
     const updateUserProfile = (updateData) => {
         return updateProfile(auth.currentUser, updateData);
     }
 
+    // ! password reset
     const passwordReset = (email) => {
         return sendPasswordResetEmail(auth, email);
+    }
+
+    // ! update profile
+    const updateMyProfile = (updateData) => {
+        return updateProfile(auth.currentUser, updateData);
     }
 
     const AuthInfo = {
@@ -53,6 +64,7 @@ const AuthProvider = ({ children }) => {
         updateUserProfile,
         signInWithGoogle,
         passwordReset,
+        updateMyProfile,
     }
 
     useEffect(() => {
