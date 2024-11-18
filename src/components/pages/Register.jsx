@@ -7,7 +7,7 @@ const Register = () => {
 
     const navigate = useNavigate();
 
-    const { setUser, regNewUser, updateUserProfile } = useContext(AuthContext);
+    const { setUser, regNewUser, updateUserProfile, signInWithGoogle } = useContext(AuthContext);
 
     const [error, setError] = useState('');
 
@@ -56,6 +56,18 @@ const Register = () => {
 
     }
 
+    const handleGoogleLogin = () => {
+        signInWithGoogle()
+            .then(result => {
+                const user = result.user;
+                // console.log(user);
+                navigate(location?.state ? location?.state : '/');
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    };
+
     return (
         <div className='flex justify-center items-center h-screen'>
             <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
@@ -98,7 +110,7 @@ const Register = () => {
                     </div>
 
                     <div className='text-center'>
-                        <button className="btn btn-primary btn-outline rounded-full">
+                        <button onClick={handleGoogleLogin} className="btn btn-primary btn-outline rounded-full">
                             <img className='w-6 h-6' src={googlePic} alt="" /> Login with Google
                         </button>
                     </div>
