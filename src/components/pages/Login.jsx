@@ -2,6 +2,9 @@ import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import googlePic from '../../assets/google.svg';
 import { AuthContext } from '../provider/AuthProvider';
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa6";
+import { toast } from 'react-toastify';
 
 const Login = () => {
 
@@ -10,9 +13,14 @@ const Login = () => {
 
     const navigate = useNavigate();
 
-    const { logInUser, setUser, signInWithGoogle } = useContext(AuthContext);
+    const { logInUser, setUser, signInWithGoogle, passwordReset } = useContext(AuthContext);
 
     const [error, setError] = useState('');
+
+    const notify = (error_notify) => toast.error(error_notify, {
+        position: "top-center",
+        autoClose: 2000
+    });
 
     const handleLogin = (event) => {
         event.preventDefault();
@@ -34,6 +42,7 @@ const Login = () => {
             .catch(error => {
                 // console.log(error.message);
                 setError(error.message);
+                notify(error.message);
             })
     }
 
@@ -49,6 +58,44 @@ const Login = () => {
             })
     };
 
+    const [showPassword, setShowPassword] = useState(false);
+
+    const handleShowHidePassword = (event) => {
+        event.stopPropagation();
+        event.preventDefault();
+
+        return setShowPassword(prev => !prev);
+    }
+
+    const emailRef = React.createRef();
+    const handlePasswordReset = () => {
+        const email_ref = emailRef.current?.value;
+        console.log('forgot password, email is', email_ref);
+
+        if (!email_ref) {
+            alert('Please enter your email');
+            return;
+        }
+        else {
+            // alert('Password reset email sent will be!');
+            passwordReset(email_ref)
+                .then(() => {
+                    toast.success('Password reset email sent!', {
+                        position: "top-center",
+                        autoClose: 2000
+                    });
+                })
+                .catch((error) => {
+                    const errorMessage = error.message;
+                    toast.error(errorMessage, {
+                        position: "top-center",
+                        autoClose: 2000
+                    });
+                });
+        }
+
+    }
+
     return (
         <div className='flex justify-center items-center h-screen'>
             <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
@@ -58,15 +105,22 @@ const Login = () => {
                         <label className="label">
                             <span className="label-text">Email</span>
                         </label>
-                        <input type="email" name='email' placeholder="email" className="input input-bordered" required />
+                        <input type="email" name='email' ref={emailRef} placeholder="email" className="input input-bordered" required />
                     </div>
-                    <div className="form-control">
+                    <div className="form-control relative">
                         <label className="label">
                             <span className="label-text">Password</span>
                         </label>
-                        <input type="password" name='password' placeholder="password" className="input input-bordered" required />
+                        <input type={showPassword ? 'text' : 'password'} name='password' placeholder="password" className="input input-bordered" required />
+
+                        <button onClick={handleShowHidePassword} className='absolute right-3 top-12 btn btn-xs'>
+                            {
+                                showPassword ? <FaEyeSlash /> : <FaEye />
+                            }
+                        </button>
+
                         <label className="label">
-                            <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                            <button onClick={handlePasswordReset} className="label-text-alt link link-hover">Forgot password?</button>
                         </label>
                     </div>
 

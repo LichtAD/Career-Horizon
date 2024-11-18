@@ -2,6 +2,8 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Navbar from '../main/Navbar';
 import Footer from '../main/Footer';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Root = () => {
     return (
@@ -17,6 +19,8 @@ const Root = () => {
             <footer>
                 <Footer></Footer>
             </footer>
+
+            <ToastContainer />
         </div>
     );
 };

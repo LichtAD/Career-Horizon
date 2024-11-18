@@ -2,6 +2,9 @@ import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import googlePic from '../../assets/google.svg';
 import { AuthContext } from '../provider/AuthProvider';
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa6";
+import { toast } from 'react-toastify';
 
 const Register = () => {
 
@@ -10,6 +13,11 @@ const Register = () => {
     const { setUser, regNewUser, updateUserProfile, signInWithGoogle } = useContext(AuthContext);
 
     const [error, setError] = useState('');
+
+    const notify2 = (error_notify) => toast.error(error_notify, {
+        position: "top-center",
+        autoClose: 2000
+    });
 
     const handleRegister = (event) => {
         event.preventDefault();
@@ -24,10 +32,11 @@ const Register = () => {
 
         // const password = "Passw1";
         const isValid = regex.test(password);
-        console.log(isValid); // true if valid, false otherwise
+        // console.log(isValid); // true if valid, false otherwise
 
         if (!isValid) {
             setError('Password must contain at least one uppercase letter, one lowercase letter, and be at least 6 characters long.');
+            notify2('Password must contain at least one uppercase letter, one lowercase letter, and be at least 6 characters long.');
             return;
         }
 
@@ -46,12 +55,14 @@ const Register = () => {
                     .catch(error => {
                         // console.log(error.message);
                         setError(error.message);
+                        notify2(error.message);
                     })
                 form.reset();
             })
             .catch(error => {
                 // console.log(error.message);
                 setError(error.message);
+                notify2(error.message);
             })
 
     }
@@ -67,6 +78,15 @@ const Register = () => {
                 console.log(error);
             })
     };
+
+    const [showPassword, setShowPassword] = useState(false);
+
+    const handleShowHidePassword = (event) => {
+        event.stopPropagation();
+        event.preventDefault();
+
+        return setShowPassword(prev => !prev);
+    }
 
     return (
         <div className='flex justify-center items-center h-screen'>
@@ -91,12 +111,21 @@ const Register = () => {
                         </label>
                         <input type="email" name='email' placeholder="email" className="input input-bordered" required />
                     </div>
-                    <div className="form-control">
+
+                    <div className="form-control relative">
                         <label className="label">
                             <span className="label-text">Password</span>
                         </label>
-                        <input type="password" name='password' placeholder="password" className="input input-bordered" required />
+                        <input type={showPassword ? 'text' : 'password'} name='password' placeholder="password" className="input input-bordered" required />
+
+                        <button onClick={handleShowHidePassword} className='absolute right-3 top-12 btn btn-xs'>
+                            {
+                                showPassword ? <FaEyeSlash /> : <FaEye />
+                            }
+                        </button>
+
                     </div>
+
                     <div className="form-control mt-6">
                         <button className="btn btn-primary">Register</button>
                     </div>

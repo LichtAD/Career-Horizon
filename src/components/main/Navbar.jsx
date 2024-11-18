@@ -4,13 +4,20 @@ import { AuthContext } from '../provider/AuthProvider';
 
 const Navbar = () => {
 
-    const links = <>
-        <li><NavLink to={'/'}>Home</NavLink></li>
-        <li><NavLink to={'/profile'}>My Profile</NavLink></li>
-    </>
-
     const { user, logOut } = useContext(AuthContext);
     // console.log(user);
+
+    const links = <>
+        <li><NavLink to={'/'}>Home</NavLink></li>
+
+        {/* <li><NavLink to={'/profile'}>My Profile</NavLink></li> */}
+        
+        {
+            user && user.email ?
+            <li><NavLink to={'/profile'}>My Profile</NavLink></li>
+            : ''
+        }
+    </>
 
     return (
         <div>
