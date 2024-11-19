@@ -63,17 +63,19 @@ const UpdatePassword = () => {
                 </Helmet>
             </div>
 
-            <div>
-                <h1>Reset Password</h1>
-                <p>Email: {email_ref}</p>
+            <div className='h-screen flex justify-center items-center'>
+                <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-xl">
+                    <h1 className="text-3xl font-bold">Reset Password</h1>
 
-                <form onSubmit={handlePasswordResetMail}>
-                    <div>
-                        <label>Is this your email?</label>
-                        <input type="text" name="update_password" defaultValue={email_ref} className='border-2 border-black' />
-                        <button className='btn btn-success'>Reset</button>
-                    </div>
-                </form>
+                    <form onSubmit={handlePasswordResetMail} className="space-y-4">
+                        <div className="flex flex-col space-y-2">
+                            <label htmlFor="update_password" className="text-sm">Is this your email?</label>
+                            <input type="text" name="update_password" defaultValue={email_ref} className="border-2 px-4 py-2 rounded-md" />
+                        </div>
+                        <button onClick={() => window.open('https://mail.google.com/mail/u/0/', '_blank')} className="btn btn-neutral w-full">Reset</button>
+                    </form>
+
+                </div>
 
             </div>
         </div>

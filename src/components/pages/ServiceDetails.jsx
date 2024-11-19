@@ -47,15 +47,32 @@ const ServiceDetails = () => {
             </div>
 
             <div className='container mx-auto px-4 py-12 md:pt-20'>
-                <div className='grid grid-cols-1 md:grid-cols-2 gap-8 items-center'>
-                    <div className='self-start'>
+                <div className='flex flex-col md:flex-row gap-8 items-center'>
+
+                    <div className='self-start md:w-1/2'>
                         <figure>
-                            <img className='h-80 rounded'
+                            <img className='rounded-2xl h-fit'
                                 src={image}
                                 alt="" />
                         </figure>
 
-                        {/* comment section */}
+                        {/* cmnt */}
+
+                    </div>
+
+                    <div className='space-y-4 self-start lg:mt-10 md:w-1/2'>
+                        <h2 className="text-3xl font-bold">{serviceName}</h2>
+                        <p className='text-lg'><span className='font-semibold'>Category:</span> {category}</p>
+                        <p className='text-lg'><span className='font-semibold'>Duration:</span> {duration}</p>
+                        <p className='text-lg'><span className='font-semibold'>Description:</span> {description}</p>
+                        <p className='text-lg'><span className='font-semibold'>Pricing:</span> {pricing}</p>
+                        <p className='text-lg'><span className='font-semibold'>Counselor Name:</span> {counselor}</p>
+                        <div className='flex items-center gap-2'>
+                            <p className='text-lg'><span className='font-semibold'>Rating:</span> {rating} </p>
+                            <ReactStars {...ratingStars} />
+                        </div>
+
+                        {/* comment section start */}
                         <div className='my-4'>
                             <form onSubmit={getComments} className='flex gap-2'>
                                 <input name='comment'
@@ -74,20 +91,7 @@ const ServiceDetails = () => {
                                 }
                             </ul>
                         </div>
-                    </div>
-                    <div className='space-y-4 self-start'>
-                        <h2 className="text-3xl font-bold">{serviceName}</h2>
-                        <p className='text-lg'><span className='font-semibold'>Category:</span> {category}</p>
-                        <p className='text-lg'><span className='font-semibold'>Duration:</span> {duration}</p>
-                        <p className='text-lg'><span className='font-semibold'>Description:</span> {description}</p>
-                        <p className='text-lg'><span className='font-semibold'>Pricing:</span> {pricing}</p>
-                        <p className='text-lg'><span className='font-semibold'>Counselor Name:</span> {counselor}</p>
-                        <div className='flex items-center gap-2'>
-                            <p className='text-lg'><span className='font-semibold'>Rating:</span> {rating} </p>
-                            <ReactStars {...ratingStars} />
-                        </div>
-
-
+                        {/* comment section end */}
 
                     </div>
                 </div>
