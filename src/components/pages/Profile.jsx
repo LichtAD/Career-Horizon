@@ -1,11 +1,14 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../provider/AuthProvider';
 import { toast } from 'react-toastify';
+import { Helmet } from "react-helmet";
+import { NavLink } from 'react-router-dom';
 
 const Profile = () => {
 
     const { user, updateMyProfile } = useContext(AuthContext);
 
+    // ! update profile (not used)
     const handleMyProfile = (event) => {
         event.preventDefault();
 
@@ -29,26 +32,27 @@ const Profile = () => {
     }
 
     return (
-        <div className='flex'>
-            <div className='w-1/2'>
-                <h1>my profile</h1>
-                <p>{user.displayName}</p>
-                <p>{user.email}</p>
-                <div>
-                    <img className='h-96' src={user.photoURL} alt="" />
-                </div>
+        <div className='h-screen flex justify-center items-center'>
+            <div>
+                <Helmet>
+                    <meta charSet="utf-8" />
+                    <title>Profile - Career Horizon</title>
+                    <link rel="canonical" href="http://mysite.com/example" />
+                </Helmet>
             </div>
-            <div className='ml-10 space-y-4 w-1/2'>
-                <h1>Update Profile</h1>
-                <form onSubmit={handleMyProfile} className='space-y-4 ml-4'>
+
+            <div className="mt-4 md:flex lg:flex gap-4 bg-white rounded-lg shadow-lg p-4">
+            <div className="flex justify-center">
+                    <img className="h-72 md:h-72 lg:h-72 rounded-full" src={user.photoURL} alt="" />
+                </div>
+                <div className="space-y-8 ml-10">
+                    <h1 className="text-3xl font-bold">My Profile</h1>
+                    <p className="text-xl">Name: {user.displayName}</p>
+                    <p className="text-xl">Email: {user.email}</p>
                     <div>
-                        <input type="text" name='name' placeholder='name' className='border-2' />
+                        <NavLink className="btn btn-neutral" to={'/updateProfile'}>Update Profile</NavLink>
                     </div>
-                    <div>
-                        <input type="text" name='photo' placeholder='photo url' className='border-2' />
-                    </div>
-                    <input className='btn btn-primary' type="submit" value="Update" />
-                </form>
+                </div>
             </div>
         </div>
     );

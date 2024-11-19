@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLoaderData, useParams } from 'react-router-dom';
+import ReactStars from "react-rating-stars-component";
 
 const ServiceDetails = () => {
 
@@ -26,43 +27,56 @@ const ServiceDetails = () => {
         event.target.reset();
     }
 
+    const ratingStars = {
+        size: 25,
+        value: rating,
+        edit: true,
+        isHalf: true,
+    };
+
     return (
-        <div>
-            <h1>service details: {id}</h1>
-            <div className="">
-                <figure>
-                    <img className='h-80'
-                        src={image}
-                        alt="" />
-                </figure>
-                <div className="">
-                    <h2 className="">{serviceName}</h2>
-                    <p>Category :{category}</p>
-                    <p>Pricing: {pricing}</p>
-                    <p>Counselor Name: {counselor}</p>
-                    <div className="">
-                        <button className="btn btn-primary">Book Now</button>
-                    </div>
+        <div className='container mx-auto px-4 py-12 md:pt-20'>
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-8 items-center'>
+                <div className='self-start'>
+                    <figure>
+                        <img className='h-80 rounded'
+                            src={image}
+                            alt="" />
+                    </figure>
 
                     {/* comment section */}
                     <div className='my-4'>
                         <form onSubmit={getComments} className='flex gap-2'>
                             <input name='comment'
                                 type="text"
-                                placeholder="Type here"
-                                className="input input-bordered input-accent w-full max-w-xs" />
-                            <button type="submit" className="btn btn-outline btn-accent">Comment</button>
+                                placeholder="Share your thoughts"
+                                className="input input-bordered input-neutral w-full max-w-xs" />
+                            <button type="submit" className="btn btn-outline btn-neutral">Comment</button>
                         </form>
                     </div>
 
                     <div>
-                        <h3>Comments</h3>
-                        <ul>
+                        <h3 className='text-2xl'>Comments</h3>
+                        <ul className='list-disc ml-8'>
                             {
-                                comments.map((comment, index) => <li key={index} className='list-disc ml-8'>{comment}</li>)
+                                comments.map((comment, index) => <li key={index}>{comment}</li>)
                             }
                         </ul>
                     </div>
+                </div>
+                <div className='space-y-4 self-start'>
+                    <h2 className="text-3xl font-bold">{serviceName}</h2>
+                    <p className='text-lg'><span className='font-semibold'>Category:</span> {category}</p>
+                    <p className='text-lg'><span className='font-semibold'>Duration:</span> {duration}</p>
+                    <p className='text-lg'><span className='font-semibold'>Description:</span> {description}</p>
+                    <p className='text-lg'><span className='font-semibold'>Pricing:</span> {pricing}</p>
+                    <p className='text-lg'><span className='font-semibold'>Counselor Name:</span> {counselor}</p>
+                    <div className='flex items-center gap-2'>
+                        <p className='text-lg'><span className='font-semibold'>Rating:</span> {rating} </p>
+                        <ReactStars {...ratingStars} />
+                    </div>
+
+
 
                 </div>
             </div>

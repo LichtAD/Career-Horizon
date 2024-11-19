@@ -27,9 +27,9 @@ const Slide = () => {
                 // onSwiper={(swiper) => console.log(swiper)}
                 // onSlideChange={() => console.log('slide change')}
             >
-                <SwiperSlide><img className='w-2/3 mx-auto' src={img1} alt="" /></SwiperSlide>
-                <SwiperSlide><img className='w-2/3 mx-auto' src={img2} alt="" /></SwiperSlide>
-                <SwiperSlide><img className='w-2/3 mx-auto' src={img3} alt="" /></SwiperSlide>
+                <SwiperSlide><img className='lg:w-2/3 mx-auto rounded-2xl' src={img1} alt="" /></SwiperSlide>
+                <SwiperSlide><img className='lg:w-2/3 mx-auto rounded-2xl' src={img2} alt="" /></SwiperSlide>
+                <SwiperSlide><img className='lg:w-2/3 mx-auto rounded-2xl' src={img3} alt="" /></SwiperSlide>
             </Swiper>
         </div>
     );

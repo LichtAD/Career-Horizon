@@ -14,6 +14,9 @@ import Register from './components/pages/Register';
 import AuthProvider from './components/provider/AuthProvider';
 import PrivateRoutesMain from './PrivateRoutesMain';
 import ErrorPage from './components/pages/ErrorPage';
+import UpdateProfile from './components/pages/UpdateProfile';
+import UpdatePassword from './components/pages/UpdatePassword';
+import FreeCourse from './components/pages/FreeCourse';
 
 const router = createBrowserRouter([
   {
@@ -36,7 +39,17 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <PrivateRoutesMain>
-          <Profile></Profile>
+          <Profile></Profile>,
+        </PrivateRoutesMain>,
+      },
+      {
+        path: "/updatePassword",
+        element: <UpdatePassword></UpdatePassword>,
+      },
+      {
+        path: "/updateProfile",
+        element: <PrivateRoutesMain>
+          <UpdateProfile></UpdateProfile>,
         </PrivateRoutesMain>,
       },
       {
@@ -46,6 +59,12 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "/course",
+        element: <PrivateRoutesMain>
+          <FreeCourse></FreeCourse>
+        </PrivateRoutesMain>,
       },
     ],
   },

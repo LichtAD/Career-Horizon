@@ -16,7 +16,7 @@ const SingleServiceCard = ({ service }) => {
                         alt="" />
                 </figure>
                 <div className="card-body">
-                    <h2 className="card-title">{serviceName}</h2>
+                    <h2 className="font-semibold text-2xl md:text-lg lg:text-xl">{serviceName}</h2>
                     <p>Category :{category}</p>
                     <p>Pricing: {pricing}</p>
                     <p>Counselor Name: {counselor}</p>

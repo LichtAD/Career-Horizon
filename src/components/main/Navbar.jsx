@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
+import logo from '../../assets/logo.jpeg';
 
 const Navbar = () => {
 
@@ -11,11 +12,14 @@ const Navbar = () => {
         <li><NavLink to={'/'}>Home</NavLink></li>
 
         {/* <li><NavLink to={'/profile'}>My Profile</NavLink></li> */}
-        
+
         {
             user && user.email ?
-            <li><NavLink to={'/profile'}>My Profile</NavLink></li>
-            : ''
+                <>
+                    <li><NavLink to={'/profile'}>My Profile</NavLink></li>
+                    <li><NavLink to={'/course'}>Free Course</NavLink></li>
+                </>
+                : ''
         }
     </>
 
@@ -44,7 +48,10 @@ const Navbar = () => {
                             {links}
                         </ul>
                     </div>
-                    <NavLink to={'/'} className="btn btn-ghost text-xl">Career Horizon</NavLink>
+                    <div className='flex justify-center items-center'>
+                        <img src={logo} className="w-16 rounded-full" alt="" />
+                        <NavLink to={'/'} className="text-xl font-medium">Career Horizon</NavLink>
+                    </div>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">

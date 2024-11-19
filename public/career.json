@@ -19,7 +19,7 @@
         "pricing": "$25 per review",
         "duration": "Flexible timing",
         "counselor": "John Doe",
-        "rating": 4.6
+        "rating": 4.4
     },
     {
         "id": 3,
@@ -52,7 +52,7 @@
         "pricing": "$15 per assessment",
         "duration": "Flexible timing",
         "counselor": "Mr. Peter Parker",
-        "rating": 4.5
+        "rating": 4.3
     },
     {
         "id": 6,

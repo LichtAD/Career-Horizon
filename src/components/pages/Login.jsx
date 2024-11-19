@@ -1,10 +1,11 @@
 import React, { useContext, useRef, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import googlePic from '../../assets/google.svg';
 import { AuthContext } from '../provider/AuthProvider';
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa6";
 import { toast } from 'react-toastify';
+import { Helmet } from "react-helmet";
 
 const Login = () => {
 
@@ -54,7 +55,11 @@ const Login = () => {
                 navigate(location?.state ? location?.state : '/');
             })
             .catch(error => {
-                console.log(error);
+                // console.log(error);
+                toast.error(error.message, {
+                    position: "top-center",
+                    autoClose: 2000
+                })
             })
     };
 
@@ -67,6 +72,8 @@ const Login = () => {
         return setShowPassword(prev => !prev);
     }
 
+    // ! password reset with email sent (not used here, used in updatePassword page)
+    
     const emailRef = useRef();
 
     const handlePasswordReset = (event) => {
@@ -103,52 +110,82 @@ const Login = () => {
 
     }
 
+    const handlePasswordReset2 = (event) => {
+        event.stopPropagation();
+        event.preventDefault();
+
+        const email_ref = emailRef.current?.value;
+        // console.log('forgot password, email is', email_ref);
+
+        if (!email_ref) {
+            toast.warning('Please enter your email!', {
+                position: "top-center",
+                autoClose: 2000
+            })
+            return;
+        }
+        else{
+            navigate('/updatePassword', { state: { email_ref } });
+        }
+    }
+
     return (
-        <div className='flex justify-center items-center h-screen'>
-            <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-                <h1 className="text-center text-3xl font-bold my-4">Login Now</h1>
-                <form onSubmit={handleLogin} className="card-body">
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Email</span>
-                        </label>
-                        <input type="email" name='email' ref={emailRef} placeholder="email" className="input input-bordered" required />
-                    </div>
-                    <div className="form-control relative">
-                        <label className="label">
-                            <span className="label-text">Password</span>
-                        </label>
-                        <input type={showPassword ? 'text' : 'password'} name='password' placeholder="password" className="input input-bordered" required />
+        <div>
 
-                        <button onClick={handleShowHidePassword} className='absolute right-3 top-12 btn btn-xs'>
-                            {
-                                showPassword ? <FaEyeSlash /> : <FaEye />
-                            }
-                        </button>
+            <div>
+                <Helmet>
+                    <meta charSet="utf-8" />
+                    <title>Login</title>
+                    <link rel="canonical" href="http://mysite.com/example" />
+                </Helmet>
+            </div>
 
-                        <label className="label">
-                            <button onClick={handlePasswordReset} className="label-text-alt link link-hover">Forgot password?</button>
-                        </label>
-                    </div>
+            <div className='flex justify-center items-center h-screen'>
+                <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+                    <h1 className="text-center text-3xl font-bold my-4">Login Now</h1>
+                    <form onSubmit={handleLogin} className="card-body">
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Email</span>
+                            </label>
+                            <input type="email" name='email' ref={emailRef} placeholder="email" className="input input-bordered" required />
+                        </div>
+                        <div className="form-control relative">
+                            <label className="label">
+                                <span className="label-text">Password</span>
+                            </label>
+                            <input type={showPassword ? 'text' : 'password'} name='password' placeholder="password" className="input input-bordered" required />
 
-                    {
-                        error && <p className='text-red-600'>{error}</p>
-                    }
+                            <button onClick={handleShowHidePassword} className='absolute right-3 top-12 btn btn-xs'>
+                                {
+                                    showPassword ? <FaEyeSlash /> : <FaEye />
+                                }
+                            </button>
 
-                    <div className="form-control mt-1">
-                        <button className="btn btn-primary">Login</button>
-                    </div>
+                            <label className="label">
+                                <button onClick={handlePasswordReset2} className="label-text-alt link link-hover">Forgot password?</button>
+                            </label>
+                        </div>
 
-                    <div className='my-2'>
-                        <h1>Don't have an account? <Link to={'/register'} className='text-primary link link-hover'>Register</Link></h1>
-                    </div>
+                        {
+                            error && <p className='text-red-600'>{error}</p>
+                        }
 
-                    <div className='text-center'>
-                        <button onClick={handleGoogleLogin} className="btn btn-primary btn-outline rounded-full">
-                            <img className='w-6 h-6' src={googlePic} alt="" /> Login with Google
-                        </button>
-                    </div>
-                </form>
+                        <div className="form-control mt-1">
+                            <button className="btn btn-primary">Login</button>
+                        </div>
+
+                        <div className='my-2'>
+                            <h1>Don't have an account? <Link to={'/register'} className='text-primary link link-hover'>Register</Link></h1>
+                        </div>
+
+                        <div className='text-center'>
+                            <button onClick={handleGoogleLogin} className="btn btn-primary btn-outline rounded-full">
+                                <img className='w-6 h-6' src={googlePic} alt="" /> Login with Google
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     );
