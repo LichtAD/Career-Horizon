@@ -74,7 +74,6 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
                 // console.log(user);
-                setUser({ ...user, displayName: name, photoURL: photo });
                 navigate(location?.state ? location?.state : '/');
             })
             .catch(error => {
