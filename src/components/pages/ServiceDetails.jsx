@@ -60,7 +60,7 @@ const ServiceDetails = () => {
 
                     </div>
 
-                    <div className='space-y-4 self-start lg:mt-10 lg:w-1/2'>
+                    <div className='space-y-4 self-start lg:w-1/2'>
                         <h2 className="text-3xl font-bold">{serviceName}</h2>
                         <p className='text-lg'><span className='font-semibold'>Category:</span> {category}</p>
                         <p className='text-lg'><span className='font-semibold'>Duration:</span> {duration}</p>
