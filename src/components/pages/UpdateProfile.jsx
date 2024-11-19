@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet";
 
 const UpdateProfile = () => {
 
-    const { user, updateMyProfile } = useContext(AuthContext);
+    const { user, setUser, updateMyProfile } = useContext(AuthContext);
 
     const navigate = useNavigate();
 
@@ -24,6 +24,7 @@ const UpdateProfile = () => {
                     position: "top-center",
                     autoClose: 2000,
                 });
+                setUser({ ...user, displayName: name, photoURL: photo });
                 form.reset();
                 // window.location.reload();
                 navigate('/profile');
