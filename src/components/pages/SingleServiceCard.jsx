@@ -1,14 +1,16 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+
 const SingleServiceCard = ({ service }) => {
 
     const navigate = useNavigate();
 
-    const {id, image, serviceName, category, description, pricing, duration, counselor, rating } = service
+    const { id, image, serviceName, category, description, pricing, duration, counselor, rating } = service
 
     return (
         <div>
+
             <div className="card card-compact bg-base-100 shadow-xl">
                 <figure>
                     <img className='h-full'

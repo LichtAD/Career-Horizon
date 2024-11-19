@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLoaderData, useParams } from 'react-router-dom';
 import ReactStars from "react-rating-stars-component";
+import { Helmet } from "react-helmet";
 
 const ServiceDetails = () => {
 
@@ -35,49 +36,60 @@ const ServiceDetails = () => {
     };
 
     return (
-        <div className='container mx-auto px-4 py-12 md:pt-20'>
-            <div className='grid grid-cols-1 md:grid-cols-2 gap-8 items-center'>
-                <div className='self-start'>
-                    <figure>
-                        <img className='h-80 rounded'
-                            src={image}
-                            alt="" />
-                    </figure>
+        <div>
 
-                    {/* comment section */}
-                    <div className='my-4'>
-                        <form onSubmit={getComments} className='flex gap-2'>
-                            <input name='comment'
-                                type="text"
-                                placeholder="Share your thoughts"
-                                className="input input-bordered input-neutral w-full max-w-xs" />
-                            <button type="submit" className="btn btn-outline btn-neutral">Comment</button>
-                        </form>
+            <div>
+                <Helmet>
+                    <meta charSet="utf-8" />
+                    <title>{serviceName}</title>
+                    <link rel="canonical" href="http://mysite.com/example" />
+                </Helmet>
+            </div>
+
+            <div className='container mx-auto px-4 py-12 md:pt-20'>
+                <div className='grid grid-cols-1 md:grid-cols-2 gap-8 items-center'>
+                    <div className='self-start'>
+                        <figure>
+                            <img className='h-80 rounded'
+                                src={image}
+                                alt="" />
+                        </figure>
+
+                        {/* comment section */}
+                        <div className='my-4'>
+                            <form onSubmit={getComments} className='flex gap-2'>
+                                <input name='comment'
+                                    type="text"
+                                    placeholder="Share your thoughts"
+                                    className="input input-bordered input-neutral w-full max-w-xs" />
+                                <button type="submit" className="btn btn-outline btn-neutral">Comment</button>
+                            </form>
+                        </div>
+
+                        <div>
+                            <h3 className='text-2xl'>Comments</h3>
+                            <ul className='list-disc ml-8'>
+                                {
+                                    comments.map((comment, index) => <li key={index}>{comment}</li>)
+                                }
+                            </ul>
+                        </div>
                     </div>
+                    <div className='space-y-4 self-start'>
+                        <h2 className="text-3xl font-bold">{serviceName}</h2>
+                        <p className='text-lg'><span className='font-semibold'>Category:</span> {category}</p>
+                        <p className='text-lg'><span className='font-semibold'>Duration:</span> {duration}</p>
+                        <p className='text-lg'><span className='font-semibold'>Description:</span> {description}</p>
+                        <p className='text-lg'><span className='font-semibold'>Pricing:</span> {pricing}</p>
+                        <p className='text-lg'><span className='font-semibold'>Counselor Name:</span> {counselor}</p>
+                        <div className='flex items-center gap-2'>
+                            <p className='text-lg'><span className='font-semibold'>Rating:</span> {rating} </p>
+                            <ReactStars {...ratingStars} />
+                        </div>
 
-                    <div>
-                        <h3 className='text-2xl'>Comments</h3>
-                        <ul className='list-disc ml-8'>
-                            {
-                                comments.map((comment, index) => <li key={index}>{comment}</li>)
-                            }
-                        </ul>
+
+
                     </div>
-                </div>
-                <div className='space-y-4 self-start'>
-                    <h2 className="text-3xl font-bold">{serviceName}</h2>
-                    <p className='text-lg'><span className='font-semibold'>Category:</span> {category}</p>
-                    <p className='text-lg'><span className='font-semibold'>Duration:</span> {duration}</p>
-                    <p className='text-lg'><span className='font-semibold'>Description:</span> {description}</p>
-                    <p className='text-lg'><span className='font-semibold'>Pricing:</span> {pricing}</p>
-                    <p className='text-lg'><span className='font-semibold'>Counselor Name:</span> {counselor}</p>
-                    <div className='flex items-center gap-2'>
-                        <p className='text-lg'><span className='font-semibold'>Rating:</span> {rating} </p>
-                        <ReactStars {...ratingStars} />
-                    </div>
-
-
-
                 </div>
             </div>
         </div>

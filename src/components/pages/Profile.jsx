@@ -41,8 +41,8 @@ const Profile = () => {
                 </Helmet>
             </div>
 
-            <div className="mt-4 md:flex lg:flex gap-4 bg-white rounded-lg shadow-lg p-4">
-            <div className="flex justify-center">
+            <div className="mt-4 flex flex-col md:flex-row lg:flex-row gap-2 bg-white rounded-lg shadow-lg p-4">
+                <div className="flex justify-center">
                     <img className="h-72 md:h-72 lg:h-72 rounded-full" src={user.photoURL} alt="" />
                 </div>
                 <div className="space-y-8 ml-10">
