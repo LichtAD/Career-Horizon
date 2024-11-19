@@ -51,6 +51,7 @@ const Register = () => {
                 // console.log(user);
                 updateUserProfile({ displayName: name, photoURL: photo })
                     .then(() => {
+                        setUser({ ...user, displayName: name, photoURL: photo });
                         navigate('/');
                     })
                     .catch(error => {
@@ -73,6 +74,7 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
                 // console.log(user);
+                setUser({ ...user, displayName: name, photoURL: photo });
                 navigate(location?.state ? location?.state : '/');
             })
             .catch(error => {
