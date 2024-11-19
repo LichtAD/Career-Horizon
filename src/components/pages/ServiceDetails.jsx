@@ -47,9 +47,9 @@ const ServiceDetails = () => {
             </div>
 
             <div className='container mx-auto px-4 py-12 md:pt-20'>
-                <div className='flex flex-col md:flex-row gap-8 items-center'>
+                <div className='flex flex-col lg:flex-row gap-8 items-center'>
 
-                    <div className='self-start md:w-1/2'>
+                    <div className='self-start lg:w-1/2'>
                         <figure>
                             <img className='rounded-2xl h-fit'
                                 src={image}
@@ -60,7 +60,7 @@ const ServiceDetails = () => {
 
                     </div>
 
-                    <div className='space-y-4 self-start lg:mt-10 md:w-1/2'>
+                    <div className='space-y-4 self-start lg:mt-10 lg:w-1/2'>
                         <h2 className="text-3xl font-bold">{serviceName}</h2>
                         <p className='text-lg'><span className='font-semibold'>Category:</span> {category}</p>
                         <p className='text-lg'><span className='font-semibold'>Duration:</span> {duration}</p>
