@@ -7,7 +7,7 @@ Career Horizon is a platform to connect users with their desired career goals. I
 
 ![Career Horizon](https://i.ibb.co/0yKzxcc/career-horizon.png)
 
-<!-- ![Career Horizon](./assets/career-horizon.png) -->
+![Career Horizon](./assets/career-horizon-front.png)
 
 ## Key Features
 
