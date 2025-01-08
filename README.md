@@ -53,7 +53,7 @@ cd <project-directory>
 npm i
 ```
 
-- Create .env.local file and add all the environment variables
+- Create .env.local file and add all the environment variables from firebase
 
 - Run the project
 ```
