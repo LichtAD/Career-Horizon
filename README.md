@@ -36,3 +36,24 @@ Career Horizon is a platform to connect users with their desired career goals. I
 ## Live Link of the Project
 
 # [Live Site Link](https://assignment-9-career-horizon.web.app/)
+
+## How to run the project in local
+
+- First, clone the project
+```
+git clone <private-repo-url>
+```
+- Then go to project folder
+```
+cd <project-directory>
+```
+
+- Install all packages
+```
+npm i
+```
+
+- Run the project
+```
+npm run dev
+```
