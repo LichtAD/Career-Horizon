@@ -53,6 +53,8 @@ cd <project-directory>
 npm i
 ```
 
+- Create .env.local file and add all the environment variables
+
 - Run the project
 ```
 npm run dev
