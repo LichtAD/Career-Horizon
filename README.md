@@ -5,8 +5,6 @@ Find Your Dream Job. Explore Opportunities and Build Your Future with Us.
 
 Career Horizon is a platform to connect users with their desired career goals. It provides a list of various career services and their details. Users can explore and find the best career service for themselves. It also provides a feature to purchase the service. The service list is categorized into three sections: Online, Offline and Group. Users can also rate the services. The services are provided by career experts with high ratings.
 
-![Career Horizon](https://i.ibb.co/0yKzxcc/career-horizon.png)
-
 ![Career Horizon](https://i.ibb.co.com/tmbyjXp/career-horizon-front.png)
 
 ## Key Features
